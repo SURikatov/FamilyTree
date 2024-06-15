@@ -11,6 +11,7 @@ import com.example.familytree.view.ConsoleView;
 import com.example.familytree.view.View;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -49,10 +50,15 @@ public class Main {
     }
 
     private static void addInitialData(Presenter presenter) {
-        Person person1 = new Person(1, "Алиса", 30, Gender.FEMALE);
-        Person person2 = new Person(2, "Боб", 25, Gender.MALE);
-        Dog dog1 = new Dog(1, "Бадди", 5);
-        Dog dog2 = new Dog(2, "Чарли", 3);
+        LocalDate birthdatePerson1 = LocalDate.of(1990, 1, 1);
+        LocalDate birthdatePerson2 = LocalDate.of(1995, 6, 15);
+        LocalDate birthdateDog1 = LocalDate.of(2019, 5, 1);
+        LocalDate birthdateDog2 = LocalDate.of(2021, 8, 10);
+
+        Person person1 = new Person(1, "Света", 30, birthdatePerson1, null, true, Gender.FEMALE);
+        Person person2 = new Person(2, "Федор", 25, birthdatePerson2, null, true, Gender.MALE);
+        Dog dog1 = new Dog(1, "Шарик", 5, birthdateDog1, null, true);
+        Dog dog2 = new Dog(2, "Себастьян", 3, birthdateDog2, null, true);
 
         presenter.addPerson(person1);
         presenter.addPerson(person2);
