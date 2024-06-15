@@ -1,6 +1,6 @@
 package com.example.familytree.model;
 
-import java.io.*;
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.*;
 
@@ -33,29 +33,18 @@ public class FamilyTree<T> implements Serializable {
         this.members = members;
     }
 
-    @Override
-    public String toString() {
-        return "FamilyTree{" +
-                "members=" + members +
-                '}';
-    }
-
     public List<T> sortByNames() {
         List<T> sortedList = new ArrayList<>(members.values());
-        if (!sortedList.isEmpty() && sortedList.get(0) instanceof Person) {
-            sortedList.sort(Comparator.comparing(o -> ((Person) o).getName()));
-        } else if (!sortedList.isEmpty() && sortedList.get(0) instanceof Dog) {
-            sortedList.sort(Comparator.comparing(o -> ((Dog) o).getName()));
+        if (!sortedList.isEmpty() && sortedList.get(0) instanceof Nameable) {
+            sortedList.sort(Comparator.comparing(o -> ((Nameable) o).getName()));
         }
         return sortedList;
     }
 
     public List<T> sortByIds() {
         List<T> sortedList = new ArrayList<>(members.values());
-        if (!sortedList.isEmpty() && sortedList.get(0) instanceof Person) {
-            sortedList.sort(Comparator.comparing(o -> ((Person) o).getId()));
-        } else if (!sortedList.isEmpty() && sortedList.get(0) instanceof Dog) {
-            sortedList.sort(Comparator.comparing(o -> ((Dog) o).getId()));
+        if (!sortedList.isEmpty() && sortedList.get(0) instanceof Identifiable) {
+            sortedList.sort(Comparator.comparing(o -> ((Identifiable) o).getId()));
         }
         return sortedList;
     }
@@ -156,5 +145,12 @@ public class FamilyTree<T> implements Serializable {
             }
         }
         return dogsByDeathDate;
+    }
+
+    @Override
+    public String toString() {
+        return "FamilyTree{" +
+                "members=" + members +
+                '}';
     }
 }

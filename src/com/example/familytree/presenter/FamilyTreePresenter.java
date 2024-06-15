@@ -1,7 +1,5 @@
 package com.example.familytree.presenter;
 
-import java.util.List;
-
 import com.example.familytree.model.Dog;
 import com.example.familytree.model.FamilyTree;
 import com.example.familytree.model.Person;
@@ -18,14 +16,12 @@ public class FamilyTreePresenter implements Presenter {
 
     @Override
     public void loadPeople() {
-        List<Person> people = familyTree.getPeople();
-        view.displayPeople(people);
+        view.displayPeople(familyTree.getPeople());
     }
 
     @Override
     public void loadDogs() {
-        List<Dog> dogs = familyTree.getDogs();
-        view.displayDogs(dogs);
+        view.displayDogs(familyTree.getDogs());
     }
 
     @Override

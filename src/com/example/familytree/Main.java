@@ -1,14 +1,8 @@
 package com.example.familytree;
 
-import com.example.familytree.model.Dog;
-import com.example.familytree.model.FamilyTree;
-import com.example.familytree.model.Gender;
-import com.example.familytree.model.Person;
-import com.example.familytree.presenter.FamilyTreePresenter;
-import com.example.familytree.presenter.FileHandler;
-import com.example.familytree.presenter.Presenter;
-import com.example.familytree.view.ConsoleView;
-import com.example.familytree.view.View;
+import com.example.familytree.model.*;
+import com.example.familytree.presenter.*;
+import com.example.familytree.view.*;
 
 import java.io.IOException;
 import java.time.LocalDate;
@@ -36,7 +30,7 @@ public class Main {
         try {
             return FileHandler.loadFamilyTree(FILENAME);
         } catch (IOException | ClassNotFoundException e) {
-            logger.log(Level.SEVERE, "Не удалось загрузить семейное дерево из файла. Создаем новое семейное дерево.", e);
+            logger.log(Level.SEVERE, "Не удалось загрузить семейное дерево из файла. Создается новое семейное дерево.", e);
             return new FamilyTree<>();
         }
     }

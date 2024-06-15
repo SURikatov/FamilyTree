@@ -2,9 +2,8 @@ package com.example.familytree.model;
 
 import java.io.*;
 import java.time.LocalDate;
-import com.example.utils.FileSerializable;
 
-public class Dog implements FileSerializable<Dog>, Serializable {
+public class Dog implements Identifiable, Nameable, Serializable {
     private static final long serialVersionUID = 1L;
 
     private int id;
@@ -71,17 +70,5 @@ public class Dog implements FileSerializable<Dog>, Serializable {
                 '}';
     }
 
-    @Override
-    public void saveToFile(String fileName, Dog dog) throws IOException {
-        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(fileName))) {
-            oos.writeObject(dog);
-        }
-    }
-
-    @Override
-    public Dog loadFromFile(String fileName) throws IOException, ClassNotFoundException {
-        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(fileName))) {
-            return (Dog) ois.readObject();
-        }
-    }
+    // Методы saveToFile и loadFromFile перенесены в класс FileHandler
 }

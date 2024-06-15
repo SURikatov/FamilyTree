@@ -1,13 +1,13 @@
 package com.example.familytree.presenter;
 
+import com.example.familytree.model.FamilyTree;
+
 import java.io.*;
 import java.util.Map;
 
-import com.example.familytree.model.FamilyTree;
-
 public class FileHandler {
     private FileHandler() {
-
+        // Private constructor to prevent instantiation
     }
 
     public static <T> void saveFamilyTree(FamilyTree<T> tree, String fileName) throws IOException {

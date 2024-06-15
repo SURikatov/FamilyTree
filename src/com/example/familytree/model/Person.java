@@ -2,9 +2,8 @@ package com.example.familytree.model;
 
 import java.io.*;
 import java.time.LocalDate;
-import com.example.utils.FileSerializable;
 
-public class Person implements FileSerializable<Person>, Nameable, Identifiable, Serializable {
+public class Person implements Identifiable, Nameable, Serializable {
     private static final long serialVersionUID = 1L;
 
     private int id;
@@ -78,17 +77,5 @@ public class Person implements FileSerializable<Person>, Nameable, Identifiable,
                 '}';
     }
 
-    @Override
-    public void saveToFile(String fileName, Person person) throws IOException {
-        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(fileName))) {
-            oos.writeObject(person);
-        }
-    }
-
-    @Override
-    public Person loadFromFile(String fileName) throws IOException, ClassNotFoundException {
-        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(fileName))) {
-            return (Person) ois.readObject();
-        }
-    }
+    // Методы saveToFile и loadFromFile перенесены в класс FileHandler
 }

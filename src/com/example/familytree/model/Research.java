@@ -20,14 +20,19 @@ public class Research {
     }
 
     public void printAllPeople() {
-        for (Person person : getAllPeople()) {
+        List<Person> people = getAllPeople();
+        for (Person person : people) {
             logger.info(person.toString());
         }
     }
 
     public void printAllDogs() {
-        for (Dog dog : getAllDogs()) {
+        List<Dog> dogs = getAllDogs();
+        for (Dog dog : dogs) {
             logger.info(dog.toString());
         }
     }
 }
+
+
+ // Методы printAllPeople и printAllDogs перенесены в класс ConsoleView

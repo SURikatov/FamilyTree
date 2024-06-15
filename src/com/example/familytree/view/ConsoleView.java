@@ -1,11 +1,11 @@
 package com.example.familytree.view;
 
+import com.example.familytree.model.Dog;
+import com.example.familytree.model.Person;
+
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
-import com.example.familytree.model.Dog;
-import com.example.familytree.model.Person;
 
 public class ConsoleView implements View {
     private static final Logger logger = Logger.getLogger(ConsoleView.class.getName());
