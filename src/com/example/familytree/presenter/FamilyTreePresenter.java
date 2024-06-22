@@ -1,38 +1,29 @@
 package com.example.familytree.presenter;
 
-import com.example.familytree.model.Dog;
-import com.example.familytree.model.FamilyTree;
+import java.util.List;
+
 import com.example.familytree.model.Person;
+import com.example.familytree.service.FamilyTreeService;
 import com.example.familytree.view.View;
 
 public class FamilyTreePresenter implements Presenter {
-    private FamilyTree<Object> familyTree;
+    private FamilyTreeService service;
     private View view;
 
-    public FamilyTreePresenter(FamilyTree<Object> familyTree, View view) {
-        this.familyTree = familyTree;
+    public FamilyTreePresenter(FamilyTreeService service, View view) {
+        this.service = service;
         this.view = view;
     }
 
     @Override
     public void loadPeople() {
-        view.displayPeople(familyTree.getPeople());
-    }
-
-    @Override
-    public void loadDogs() {
-        view.displayDogs(familyTree.getDogs());
+        List<Person> people = service.getPeople();
+        view.displayPeople(people);
     }
 
     @Override
     public void addPerson(Person person) {
-        familyTree.addMember(person.getId(), person);
-        view.displayMessage("Person added: " + person.getName());
-    }
-
-    @Override
-    public void addDog(Dog dog) {
-        familyTree.addMember(dog.getId(), dog);
-        view.displayMessage("Dog added: " + dog.getName());
+        service.addPerson(person);
+        view.displayMessage("Человек добавлен: " + person.getName());
     }
 }

@@ -1,28 +1,35 @@
 package com.example.familytree.presenter;
 
 import com.example.familytree.model.FamilyTree;
+import com.example.familytree.model.Person;
 
 import java.io.*;
+
 import java.util.Map;
 
 public class FileHandler {
     private FileHandler() {
-        // Private constructor to prevent instantiation
+
     }
 
-    public static <T> void saveFamilyTree(FamilyTree<T> tree, String fileName) throws IOException {
+    public static void saveFamilyTree(FamilyTree<Person> tree, String fileName) throws IOException {
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(fileName))) {
             oos.writeObject(tree.getMembers());
         }
     }
 
-    @SuppressWarnings("unchecked")
-    public static <T> FamilyTree<T> loadFamilyTree(String fileName) throws IOException, ClassNotFoundException {
+    public static FamilyTree<Person> loadFamilyTree(String fileName) throws IOException, ClassNotFoundException {
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(fileName))) {
-            Map<Integer, T> members = (Map<Integer, T>) ois.readObject();
-            FamilyTree<T> tree = new FamilyTree<>();
-            tree.setMembers(members);
-            return tree;
+            Object object = ois.readObject();
+            if (object instanceof Map<?, ?>) {
+                @SuppressWarnings("unchecked")
+                Map<Integer, Person> members = (Map<Integer, Person>) object;
+                FamilyTree<Person> tree = new FamilyTree<>();
+                tree.setMembers(members);
+                return tree;
+            } else {
+                throw new IOException("Файл не содержит корректных данных для FamilyTree");
+            }
         }
     }
 }
